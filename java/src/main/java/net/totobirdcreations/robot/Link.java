@@ -12,16 +12,17 @@ public class Link
         path         = path.substring(0, path.lastIndexOf("/"));
         path         = path.replaceAll("%20"," ");
         path        += "/robot.dll";
-        System.out.println(path);
         System.load(path);
     }
 
 
-    private static native Instance rust_sum(Instance<Integer> a_instance, Instance<Integer> b_instance);
+    public static native void hello();
+
+    private static native Instance<Integer> rustSum(Instance<Integer> i1, Instance<Integer> i2);
 
 
     public static Integer sum(Integer a, Integer b) {
-        return Java2RustUtils.getObjectCasted(Link.rust_sum(
+        return Java2RustUtils.getObjectCasted(Link.rustSum(
             Java2RustUtils.createInstance(a),
             Java2RustUtils.createInstance(b)
         ));

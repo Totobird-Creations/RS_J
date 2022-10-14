@@ -9,7 +9,7 @@ edition = "2021"
 crate_type = ["cdylib"]
 
 [dependencies]
-j4rs        = "0.12"
+j4rs        = "0.13"
 j4rs_derive = "0.1"
 
 [dependencies.serde]
