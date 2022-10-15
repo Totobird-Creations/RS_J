@@ -4,14 +4,21 @@ import org.astonbitecode.j4rs.api.Instance;
 import org.astonbitecode.j4rs.api.java2rust.Java2RustUtils;
 
 
-public class Link
+public class Rust
 {
-
     static {
-        String path  = Link.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String path  = Rust.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         path         = path.substring(0, path.lastIndexOf("/"));
         path         = path.replaceAll("%20"," ");
-        path        += "/robot.dll";
+        path        += "/robot.";
+        String os    = System.getProperty("os.name").toLowerCase();
+        if (os.contains("linux") || os.contains("unix")) {
+            path += "so";
+        } else if (os.contains("win")) {
+            path += "dll";
+        } else {
+            throw new UnsatisfiedLinkError("Can not load dynamic library in unknown operating system `" + os + "`");
+        }
         System.load(path);
     }
 
@@ -22,7 +29,7 @@ public class Link
 
 
     public static Integer sum(Integer a, Integer b) {
-        return Java2RustUtils.getObjectCasted(Link.rustSum(
+        return Java2RustUtils.getObjectCasted(Rust.rustSum(
             Java2RustUtils.createInstance(a),
             Java2RustUtils.createInstance(b)
         ));

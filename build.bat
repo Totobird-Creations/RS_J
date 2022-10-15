@@ -1,6 +1,6 @@
-@PushD ".\rust"
+@PushD "rust"
 cargo build
 @PopD
-@PushD ".\java"
+@PushD "java"
 mvn clean package
 @PopD
