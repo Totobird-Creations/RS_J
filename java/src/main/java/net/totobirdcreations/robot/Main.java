@@ -1,16 +1,15 @@
 package net.totobirdcreations.robot;
 
-import net.totobirdcreations.robot.rust.J2RS;
-import net.totobirdcreations.robot.rust.TestObject;
+import net.totobirdcreations.robot.test.Test;
 
-public class Main 
-{
+
+public class Main {
+    static {
+        RsHelper.load();
+    }
+
     public static void main(String[] args) {
-        J2RS.hello();
-        System.out.println(J2RS.sumFromRust(12, 5));
-
-        TestObject test = TestObject.createFromRust("wow ");
-        test = test.concatFromRust("how nice");
-        System.out.println(test.content);
+        Test.hello();
+        System.out.println(Test.sum(12, 5));
     }
 }

@@ -12,7 +12,7 @@ features = [
 ]
 
 [dependencies]
-javawithrust = "0.1"
+javawithrust = "0.2"
 
 [lib]
 crate_type = ["cdylib"]
