@@ -10,6 +10,7 @@ public class Main
         System.out.println(J2RS.sumFromRust(12, 5));
 
         TestObject test = TestObject.createFromRust("wow ");
+        test = test.concatFromRust("how nice");
         System.out.println(test.content);
     }
 }

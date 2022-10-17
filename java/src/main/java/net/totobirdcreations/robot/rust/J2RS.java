@@ -1,7 +1,6 @@
 package net.totobirdcreations.robot.rust;
 
 import org.astonbitecode.j4rs.api.Instance;
-import org.astonbitecode.j4rs.api.java2rust.Java2RustUtils;
 
 
 public class J2RS {
@@ -24,9 +23,9 @@ public class J2RS {
 
 
     public static Integer sumFromRust(Integer a, Integer b) {
-        return Java2RustUtils.getObjectCasted(J2RS.sum(
-            Java2RustUtils.createInstance(a),
-            Java2RustUtils.createInstance(b)
+        return ConvHelper.rs2j(J2RS.sum(
+            ConvHelper.j2rs(a),
+            ConvHelper.j2rs(b)
         ));
     }
 

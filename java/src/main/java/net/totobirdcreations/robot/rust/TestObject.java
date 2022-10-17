@@ -1,7 +1,6 @@
 package net.totobirdcreations.robot.rust;
 
 import org.astonbitecode.j4rs.api.Instance;
-import org.astonbitecode.j4rs.api.java2rust.Java2RustUtils;
 
 
 public class TestObject {
@@ -9,16 +8,18 @@ public class TestObject {
     public String content;
 
 
-    public TestObject(String start) {
-        this.content = start;
+    private static native Instance<TestObject> create(Instance<String> text);
+    public static TestObject createFromRust(String text) {
+        return ConvHelper.rs2j(TestObject.create(
+            ConvHelper.j2rs(text)
+        ));
     }
 
-
-    private static native Instance<TestObject> create(Instance<String> text);
-
-    public static TestObject createFromRust(String next) {
-        return Java2RustUtils.getObjectCasted(TestObject.create(
-            Java2RustUtils.createInstance(next)
+    private static native Instance<TestObject> concat(Instance<TestObject> self, Instance<String> text);
+    public TestObject concatFromRust(String text) {
+        return ConvHelper.rs2j(TestObject.concat(
+            ConvHelper.j2rs(this),
+            ConvHelper.j2rs(text)
         ));
     }
 
