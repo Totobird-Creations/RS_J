@@ -14,12 +14,12 @@ public class TestObject {
     }
 
 
-    private static native void concat(Instance<TestObject> self, Instance<String> next);
-    public void concatFromRust(String next) {
-        TestObject.concat(
-            Java2RustUtils.createInstance(this),
+    private static native Instance<TestObject> create(Instance<String> text);
+
+    public static TestObject createFromRust(String next) {
+        return Java2RustUtils.getObjectCasted(TestObject.create(
             Java2RustUtils.createInstance(next)
-        );
+        ));
     }
 
 }

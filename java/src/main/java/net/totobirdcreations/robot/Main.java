@@ -9,7 +9,7 @@ public class Main
         J2RS.hello();
         System.out.println(J2RS.sumFromRust(12, 5));
 
-        TestObject test = new TestObject("starttext ");
-        test.concatFromRust("thiswasaddedbyrust");
+        TestObject test = TestObject.createFromRust("wow ");
+        System.out.println(test.content);
     }
 }

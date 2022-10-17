@@ -9,8 +9,9 @@ pub struct TestObject {
 
 #[jfuncs]
 impl TestObject {
-    fn concat(this : TestObject, data : String) /*Result<(), String>*/ {
-        println!("{}", this.content + &data);
-        return Ok(());
+    fn create(text : String) -> /*Result<*/TestObject/*, String>*/ {
+        return Ok(TestObject {
+            content : text
+        });
     }
 }
