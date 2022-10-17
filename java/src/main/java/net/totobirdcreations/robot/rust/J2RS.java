@@ -4,25 +4,16 @@ import org.astonbitecode.j4rs.api.Instance;
 import org.astonbitecode.j4rs.api.java2rust.Java2RustUtils;
 
 
-public class J2RS
-{
+public class J2RS {
     static {
-        String os = System.getProperty("os.name")
-            .toLowerCase();
-        String path = J2RS.class
-            .getProtectionDomain().getCodeSource()
-            .getLocation().getPath();
-        path = path
-            .substring(0, path.lastIndexOf("/"))
-            .replaceAll("%20"," ")
-            + "/robot.";
+        String os=System.getProperty("os.name").toLowerCase();String path=J2RS.class.getProtectionDomain().getCodeSource().getLocation().getPath();path=path.substring(0,path.lastIndexOf("/")).replaceAll("%20"," ")+"/"+
+        "robot";
         if (os.contains("linux") || os.contains("unix") || os.contains("android")) {
-            path += "so";
+            path += ".so";
         } else if (os.contains("win")) {
-            path += "dll";
-        } else {
-            throw new UnsatisfiedLinkError("Can not load dynamic library in unknown operating system `" + os + "`");
+            path += ".dll";
         }
+        else {throw new UnsatisfiedLinkError("Can not load dynamic library in unknown operating system `" + os + "`");}
         System.load(path);
     }
 
